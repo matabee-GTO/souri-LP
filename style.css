@@ -55,10 +55,7 @@ section:nth-child(even) {
     font-size: 2.5rem;
     margin-bottom: 1rem;
     text-align: center;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--neon-cyan);
     font-weight: bold;
     line-height: 1.2;
 }
@@ -163,8 +160,8 @@ section:nth-child(even) {
 }
 
 .cta-button.primary {
-    background: var(--gradient-primary);
-    color: var(--primary-bg);
+    background: var(--neon-blue);
+    color: var(--text-primary);
     box-shadow: var(--shadow-neon);
 }
 
@@ -454,24 +451,26 @@ section:nth-child(even) {
     background: var(--primary-bg);
     border: 2px solid var(--neon-cyan);
     border-radius: 20px;
-    padding: 2rem;
+    padding: 4.5rem 2rem 2rem;
     text-align: center;
     position: relative;
-    max-width: 400px;
+    max-width: 500px;
     box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
 }
 
 .pricing-badge {
     position: absolute;
-    top: -10px;
+    top: -28px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--gradient-primary);
-    color: var(--primary-bg);
-    padding: 0.5rem 1rem;
-    border-radius: 15px;
+    background: var(--neon-blue);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border-radius: 30px;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
+    animation: pulse-badge 2s infinite;
+    white-space: nowrap;
 }
 
 .pricing-title {
@@ -514,7 +513,7 @@ section:nth-child(even) {
 }
 
 .discount-rate {
-    background: var(--gradient-secondary);
+    background: var(--neon-blue);
     color: var(--text-primary);
     padding: 0.3rem 0.8rem;
     border-radius: 15px;
@@ -586,10 +585,7 @@ section:nth-child(even) {
 }
 
 .glowing {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--neon-cyan);
     text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
     animation: glow 2s ease-in-out infinite alternate;
 }
@@ -669,15 +665,83 @@ section:nth-child(even) {
     .comparison-title {
         font-size: 1.5rem;
     }
-    
-    .comparison-table th,
-    .comparison-table td {
-        padding: 0.5rem;
-        font-size: 0.9rem;
+
+    /* Responsive Table */
+    .comparison-table-wrapper {
+        overflow-x: hidden;
     }
-    
+    .comparison-table {
+        min-width: 0; /* Override desktop min-width */
+    }
+    .comparison-table thead {
+        display: none;
+    }
+    .comparison-table, .comparison-table tbody, .comparison-table tr, .comparison-table td {
+        display: block;
+        width: 100% !important; /* Use important to override inline styles or specificity issues */
+    }
+    .comparison-table tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid rgba(0, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 0;
+        background: var(--primary-bg);
+    }
+    .comparison-table tr.divider-row {
+        border: none;
+        background: transparent !important;
+        margin-bottom: 0;
+    }
+    .comparison-table td {
+        padding: 0.75rem 1rem;
+        text-align: right;
+        position: relative;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .comparison-table tr td:last-child {
+        border-bottom: none;
+    }
+    .comparison-table td:before {
+        position: absolute;
+        left: 1rem;
+        width: auto;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 500;
+        color: var(--text-secondary);
+    }
+    .comparison-table td:nth-of-type(1) {
+        background-color: rgba(0, 255, 255, 0.05);
+        font-weight: bold;
+        text-align: center;
+        color: var(--text-primary);
+        border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    }
+    .comparison-table td:nth-of-type(1):before {
+        content: '';
+    }
+    .comparison-table td:nth-of-type(2):before {
+        content: '無料コミュニティ';
+    }
+    .comparison-table td:nth-of-type(3):before {
+        content: '有料プラン';
+    }
+    .comparison-table th, .comparison-table td {
+        font-size: 1rem; /* Increase font size a bit for readability */
+    }
     .comparison-table th:first-child {
-        width: 35%;
+        width: 100%;
+    }
+    .divider-cell {
+        padding: 0 !important;
+    }
+    .divider-cell .divider-line {
+        display: none;
+    }
+    .divider-text {
+        padding: 1rem 0;
+        background: transparent;
     }
     
     .operator-profile {
@@ -1042,8 +1106,8 @@ a:focus {
 }
 
 .comparison-table th.premium-col {
-    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
-    color: var(--primary-bg);
+    background: var(--neon-blue);
+    color: var(--text-primary);
     position: relative;
 }
 
@@ -1085,6 +1149,21 @@ a:focus {
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; }
+}
+
+@keyframes pulse-badge {
+    0% {
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 0 25px rgba(0, 102, 255, 0.8);
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
+    }
 }
 
 .cross-mark {
