@@ -1465,3 +1465,85 @@ a:focus {
         font-size: 0.9rem; /* 極小画面向けに調整 */
     }
 }
+
+/* ======================================================= */
+/* === ボタン用 仮想空間風アニメーション（追加CSS） === */
+/* ======================================================= */
+
+/* --- アニメーションの定義 --- */
+
+/* 1. 浮遊しながら光が脈打つアニメーション */
+@keyframes float-glow {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+  50% {
+    transform: translateY(-8px); /* 浮き上がる高さ */
+    box-shadow: 0 0 25px rgba(0, 102, 255, 0.9), 0 0 35px rgba(0, 255, 255, 0.6);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+}
+
+/* 2. 光の線が走り抜けるスキャンラインアニメーション */
+@keyframes scan-line {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+/* --- 既存ボタンへのアニメーション適用 --- */
+
+.cta-button-large {
+  /* 既存のスタイルにアニメーションを追加 */
+  animation: float-glow 4s ease-in-out infinite;
+
+  /* 疑似要素を配置するための設定（既にあれば不要）*/
+  position: relative;
+  overflow: hidden;
+}
+
+/* スキャンライン（光の線）のスタイル */
+.cta-button-large::before,
+.cta-button-large::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px; /* 線の太さ */
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+  left: 0;
+  opacity: 0; /* 通常時は非表示 */
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* クリックを妨げないようにする */
+}
+
+/* 上の線 */
+.cta-button-large::before {
+  top: 0;
+}
+
+/* 下の線 */
+.cta-button-large::after {
+  bottom: 0;
+}
+
+/* マウスホバー時にスキャンラインを表示してアニメーションを開始 */
+.cta-button-large:hover::before,
+.cta-button-large:hover::after {
+  opacity: 1; /* ホバー時に表示 */
+  animation: scan-line 1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+}
+
+/* ホバー時のアニメーションをより滑らかにする */
+.cta-button-large:hover {
+    animation-play-state: paused; /* ホバー中は浮遊アニメーションを一時停止 */
+    transform: translateY(-8px) scale(1.05); /* 少し浮き上がって拡大 */
+    transition: transform 0.3s ease;
+}
