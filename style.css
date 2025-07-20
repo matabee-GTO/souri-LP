@@ -72,18 +72,35 @@ section:nth-child(even) {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 80px 40px; /* 左右の余白を調整 */
-    background-color: #0a0a0a; /* より暗い背景で文字を際立たせる */
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #0a0a0a;
+    background-image: url('./mel1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     color: #fff;
-    overflow: hidden; /* イラストがはみ出さないように */
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
 }
 
 .hero-content {
-    flex: 1;
-    padding-right: 40px; /* イラストとの間隔 */
-    z-index: 10; /* テキストをイラストより手前に */
     text-align: center;
+    z-index: 10;
+    max-width: 800px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -94,13 +111,14 @@ section:nth-child(even) {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 文字に影をつけて見やすく */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); /* 文字に影をつけて見やすく */
 }
 
 .hero-title-line {
     display: inline-block;
     white-space: nowrap;
 }
+
 
 .highlight {
     color: var(--neon-cyan); /* 目立つネオンカラーを使用 */
@@ -113,17 +131,6 @@ section:nth-child(even) {
     margin-bottom: 30px;
 }
 
-.hero-illustration {
-    flex: 1;
-    max-width: 50%;
-    text-align: right;
-}
-
-.hero-illustration img {
-    width: 100%;
-    height: auto;
-    opacity: 0.8; /* 少し透明度を下げてテキストを強調 */
-}
 
 .typing-text {
     border-right: 3px solid var(--neon-cyan);
@@ -819,21 +826,15 @@ section:nth-child(even) {
         height: 120px;
     }
     
-    .hero-illustration img {
-        max-width: 70%;
-        max-height: 70%;
-        opacity: 0.2;
-    }
     
     /* レスポンシブ対応 */
     .hero {
-        flex-direction: column;
-        padding: 60px 20px;
-        text-align: center;
+        min-height: 80vh;
     }
     
     .hero-content {
-        padding-right: 0;
+        max-width: 90%;
+        padding: 20px;
         margin-bottom: 30px;
     }
     
@@ -841,12 +842,19 @@ section:nth-child(even) {
         font-size: 3rem;
     }
     
-    .hero-illustration {
-        max-width: 80%;
-    }
 }
 
 @media (max-width: 600px) {
+    .hero {
+        min-height: 70vh;
+    }
+    
+    .hero-content {
+        max-width: 95%;
+        padding: 15px;
+    }
+    
+    
     .cta-button {
         padding: 8px 16px;
         font-size: 0.75rem;
@@ -975,12 +983,6 @@ section:nth-child(even) {
         padding: 1rem;
     }
     
-    .hero-illustration img {
-        max-width: 60%;
-        max-height: 60%;
-        opacity: 0.15;
-        filter: blur(2px);
-    }
 }
 
 /* スクロールバーのカスタマイズ */
@@ -1396,8 +1398,9 @@ a:focus {
 
 /* style.css の末尾などに追加 */
 .hero-title, .hero-subtitle {
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9);
 }
+
 
 /* =============================================== */
 /* === ボタンサイズ統一・最大化のための追加CSS === */

@@ -228,7 +228,7 @@ function initStatsAnimation() {
     });
 }
 
-// 背景のグラデーション変更
+// 背景のグラデーション変更（mel1.png背景画像を保持）
 function initBackgroundAnimation() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
@@ -240,12 +240,17 @@ function initBackgroundAnimation() {
         mouseX = e.clientX / window.innerWidth;
         mouseY = e.clientY / window.innerHeight;
         
+        // 背景画像を保持しつつ、上にグラデーションエフェクトを追加
         hero.style.background = `
             radial-gradient(circle at ${mouseX * 100}% ${mouseY * 100}%, 
-                rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                rgba(0, 255, 255, 0.05) 0%, transparent 50%),
             radial-gradient(circle at ${(1 - mouseX) * 100}% ${(1 - mouseY) * 100}%, 
-                rgba(255, 0, 255, 0.1) 0%, transparent 50%)
+                rgba(255, 0, 255, 0.05) 0%, transparent 50%),
+            url('./mel1.png')
         `;
+        hero.style.backgroundSize = 'cover, cover, cover';
+        hero.style.backgroundPosition = 'center, center, center';
+        hero.style.backgroundRepeat = 'no-repeat, no-repeat, no-repeat';
     });
 }
 
@@ -422,7 +427,7 @@ window.addEventListener('beforeunload', saveScrollPosition);
 // ページ読み込み時の処理
 window.addEventListener('load', () => {
     restoreScrollPosition();
-    initBackgroundAnimation();
+    initBackgroundAnimation(); // mel1.png背景画像を保持するよう修正済み
     initParallaxEffect();
     initStatsAnimation();
     initThemeToggle();
