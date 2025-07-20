@@ -631,6 +631,42 @@ section:nth-child(even) {
     font-size: 1.1em;
 }
 
+.special-discount {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.special-discount-title {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.special-discount-amount {
+    font-size: 1.3rem;
+    color: #FFD700;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.final-price {
+    font-size: 2.8rem;
+    color: var(--neon-cyan);
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.final-price .tax {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-left: 0.5rem;
+}
+
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
     .hero-title {
@@ -860,6 +896,25 @@ section:nth-child(even) {
     .button-container .cta-button {
         margin-top: 0;
     }
+    
+    .community-grid,
+    .premium-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .final-message {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .final-message p {
+        margin-bottom: 0.8rem;
+    }
+    
+    .participation-note {
+        font-size: 1.1rem;
+    }
 }
 
 @media (max-width: 360px) {
@@ -879,6 +934,20 @@ section:nth-child(even) {
     
     .comparison-title {
         font-size: 1.2rem;
+    }
+    
+    .final-message {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 2rem;
+    }
+    
+    .final-message p {
+        margin-bottom: 0.6rem;
+    }
+    
+    .participation-note {
+        font-size: 1rem;
     }
     
     .comparison-table {
@@ -1139,6 +1208,15 @@ a:focus {
     overflow-x: auto;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.comparison-table-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.comparison-table-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .comparison-table {
