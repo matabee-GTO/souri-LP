@@ -1705,3 +1705,25 @@ a:focus {
   word-break: keep-all;  /* 日本語も単語単位で折返し */
 }
 
+/* ======================================================= */
+/* === 動的パーティクルエフェクト（tsParticles） === */
+/* ======================================================= */
+
+/* particles.js コンテナをヒーローセクションの背景として配置 */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* hero-contentより低いが、マウス検知のため少し上に */
+    pointer-events: auto; /* マウスイベントを受け取るよう変更 */
+}
+
+/* particles.jsのcanvas要素にマウスイベントを許可 */
+#particles-js canvas {
+    pointer-events: auto;
+    cursor: pointer; /* マウスホバー時の視覚フィードバック */
+}
+
+

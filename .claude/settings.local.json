@@ -3,7 +3,10 @@
     "allow": [
       "Bash(start index.html)",
       "Bash(start:*)",
-      "WebFetch(domain:cdnjs.cloudflare.com)"
+      "WebFetch(domain:cdnjs.cloudflare.com)",
+      "WebFetch(domain:particles.js.org)",
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

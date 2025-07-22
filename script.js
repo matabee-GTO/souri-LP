@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // GSAPアニメーション初期化
     initGSAPAnimations();
+    
+    // tsParticles初期化（動的パーティクルエフェクト）- 少し遅らせて実行
+    setTimeout(() => {
+        initTsParticles();
+    }, 100);
 });
 
 // タイピングエフェクト
@@ -703,6 +708,99 @@ function initFinalCTAAnimation() {
     });
     
     console.log('Final CTA animation set up');
+}
+
+// =====================================
+// 動的パーティクルエフェクト（particles.js）
+// =====================================
+
+// particles.js初期化
+function initTsParticles() {
+    // particles.jsライブラリが読み込まれているかチェック
+    if (typeof particlesJS === 'undefined') {
+        console.warn('particles.js library is not loaded');
+        return;
+    }
+    
+    console.log('Initializing particles.js...');
+    
+    // particles.jsを設定して初期化
+    particlesJS("particles-js", {
+        particles: {
+            number: {
+                value: 80,
+                density: {
+                    enable: true,
+                    value_area: 800
+                }
+            },
+            color: {
+                value: ["#00ffff", "#ff00ff"] // サイトのネオンカラー
+            },
+            shape: {
+                type: "circle"
+            },
+            opacity: {
+                value: 0.3,
+                random: true,
+                anim: {
+                    enable: false
+                }
+            },
+            size: {
+                value: 3,
+                random: true,
+                anim: {
+                    enable: false
+                }
+            },
+            line_linked: {
+                enable: true,
+                distance: 150,
+                color: "#ffffff",
+                opacity: 0.1,
+                width: 1
+            },
+            move: {
+                enable: true,
+                speed: 1,
+                direction: "none",
+                random: false,
+                straight: false,
+                out_mode: "out",
+                bounce: false,
+                attract: {
+                    enable: false
+                }
+            }
+        },
+        interactivity: {
+            detect_on: "window",  // "canvas"から"window"に変更で確実に検出
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: "repulse"
+                },
+                onclick: {
+                    enable: true,  // クリック時の効果も有効化
+                    mode: "push"
+                },
+                resize: true
+            },
+            modes: {
+                repulse: {
+                    distance: 100,  // 距離を少し大きく
+                    duration: 0.4
+                },
+                push: {
+                    particles_nb: 4
+                }
+            }
+        },
+        retina_detect: true
+    });
+    
+    console.log('particles.js initialized successfully');
 }
 
 // 背景のグラデーション変更（mel1.png背景画像を保持）
