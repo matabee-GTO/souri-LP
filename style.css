@@ -369,7 +369,7 @@ section:nth-child(even) {
     width: 2.5rem;
     height: 2.5rem;
     color: var(--neon-cyan);
-    transition: color 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .problem-icon svg {
@@ -380,10 +380,12 @@ section:nth-child(even) {
 .solution-item:hover .solution-icon svg,
 .community-item:hover .community-icon svg,
 .premium-item:hover .premium-icon svg {
+    transform: scale(1.1) rotate(10deg);
     color: var(--text-primary);
 }
 
 .problem-item:hover .problem-icon svg {
+    transform: scale(1.1) rotate(10deg);
     color: var(--text-primary);
 }
 
@@ -1702,3 +1704,4 @@ a:focus {
   white-space: nowrap;   /* 行全体を1語扱い */
   word-break: keep-all;  /* 日本語も単語単位で折返し */
 }
+

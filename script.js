@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 数値カウントアップアニメーション
     initStatsAnimation();
+    
+    // Tilt.js初期化
+    initTiltEffect();
 });
 
 // タイピングエフェクト
@@ -226,6 +229,44 @@ function initStatsAnimation() {
     document.querySelectorAll('.stat-number').forEach(stat => {
         statsObserver.observe(stat);
     });
+}
+
+// Tilt.js初期化
+function initTiltEffect() {
+    // VanillaTilt.js使用可能かチェック
+    if (typeof VanillaTilt === 'undefined') {
+        console.warn('VanillaTilt is not loaded. Please check if the library is properly included.');
+        return;
+    }
+    
+    // data-tilt属性を持つ要素を全て取得
+    const tiltElements = document.querySelectorAll('[data-tilt]');
+    
+    if (tiltElements.length === 0) {
+        console.warn('No elements with data-tilt attribute found');
+        return;
+    }
+    
+    // 各要素にTiltエフェクトを適用
+    tiltElements.forEach(element => {
+        // 既に初期化されている場合はスキップ
+        if (element.vanillaTilt) {
+            return;
+        }
+        
+        VanillaTilt.init(element, {
+            max: 15,          // 最大傾き角度（少し小さくして自然に）
+            speed: 400,       // アニメーション速度
+            glare: true,      // 光沢エフェクトを有効
+            'max-glare': 0.3, // 光沢の最大値（少し控えめに）
+            scale: 1.02,      // ホバー時の拡大率
+            perspective: 1000, // 3D効果の強さ
+            transition: true,  // CSS transitionを使用
+            'reset-to-start': false // マウスが離れた後の動作
+        });
+    });
+    
+    console.log(`Tilt effect initialized on ${tiltElements.length} elements`);
 }
 
 // 背景のグラデーション変更（mel1.png背景画像を保持）

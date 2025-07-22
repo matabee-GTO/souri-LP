@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(start index.html)",
-      "Bash(start:*)"
+      "Bash(start:*)",
+      "WebFetch(domain:cdnjs.cloudflare.com)"
     ],
     "deny": []
   }
