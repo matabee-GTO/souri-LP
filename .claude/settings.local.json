@@ -6,7 +6,8 @@
       "WebFetch(domain:cdnjs.cloudflare.com)",
       "WebFetch(domain:particles.js.org)",
       "WebFetch(domain:cdn.jsdelivr.net)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "WebFetch(domain:lp.souri-ai.net)"
     ],
     "deny": []
   }
